@@ -192,9 +192,25 @@ class FavoritePage extends StatelessWidget {
       );
     }
 
+    var theme = Theme.of(context);
+    var style = theme.textTheme.displaySmall!.copyWith(
+      color: theme.colorScheme.onPrimaryContainer,
+    );
+
     return ListView(
       children: [
-        for (var pair in list) Text(pair.asLowerCase),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'You have ${list.length} favorites:',
+            style: style,
+          ),
+        ),
+        for (var pair in list)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          ),
       ],
     );
   }
